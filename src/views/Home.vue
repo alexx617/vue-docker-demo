@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div class="home">
+		<el-form ref="form" :model="form" label-width="80px">
+			<el-form-item label="名称">
+				<el-input v-model="form.name"></el-input>
+			</el-form-item>
+			<el-form-item label="密码">
+				<el-input v-model="form.password" type="password"></el-input>
+			</el-form-item>
+			<el-form-item>
+				<el-button type="primary" @click="onSubmit">立即创建</el-button>
+				<el-button>取消</el-button>
+			</el-form-item>
+		</el-form>
+	</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+	name: 'home',
+	data() {
+		return {
+			form: {
+				name: '',
+				password: ''
+			}
+		}
+	},
+	methods: {
+		onSubmit() {
+			console.log('submit!');
+		}
+	}
 }
 </script>
