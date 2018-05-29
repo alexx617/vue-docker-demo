@@ -7,6 +7,8 @@ import store from './store'
 import './registerServiceWorker'
 import 'nprogress/nprogress.css'
 
+const log = window.log =  console.log.bind(console.log);
+
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false

@@ -2,7 +2,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import NProgress from 'nprogress'
-import utils from 'utils/utils';
+// import utils from 'utils/utils';
 
 let baseURL = '';
 let api = '/api';
@@ -18,7 +18,7 @@ export function fetch(opt) {
     var dataList = {
         method: opt.method,
         url: `${api}${opt.url}`,
-        timeout: 10000,
+        timeout: 5000,
         baseURL: baseURL,
         headers: {
             'Content-Type': ContentType,
@@ -58,7 +58,7 @@ axios.interceptors.response.use(res => {
     NProgress.done()
     let errorCode = error.response.status;
     if (errorCode === 401) {
-        utils.$go('login');
+        // utils.$go('login');
     } else if ([404, 405, 500, 504].includes(errorCode)) {
         error.response.data = {
             msg: '网络错误,请稍后重试!'
@@ -68,7 +68,7 @@ axios.interceptors.response.use(res => {
 });
 export default {
     //
-    customer_List(data) {
+    test_list(data) {
         return fetch({
             method: 'get',
             url: `/api/customer/list`,

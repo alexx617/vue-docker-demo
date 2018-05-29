@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import ajax from '../utils/ajax'
 export default {
 	name: 'home',
 	data() {
@@ -29,7 +30,20 @@ export default {
 	methods: {
 		onSubmit() {
 			console.log('submit!');
+		},
+		init(){
+			ajax.test_list()
+				.then(rs=>{
+					log(rs)
+				})
+				.catch(err=>{
+					log(err)
+				})
 		}
-	}
+	},
+	created () {
+		this.init();
+	},
+	
 }
 </script>
