@@ -5,7 +5,7 @@ import NProgress from 'nprogress'
 // import utils from 'utils/utils';
 
 let baseURL = '';
-let api = '/api';
+let api = '';
 // process.env.NODE_ENV !== 'development' ? baseURL = process.env.BASE_API : api = '/api';
 
 export function fetch(opt) {
@@ -71,7 +71,7 @@ export default {
     test_list(data) {
         return fetch({
             method: 'get',
-            url: `/api/customer/list`,
+            url: `/api/json`,
             data
         })
     },
