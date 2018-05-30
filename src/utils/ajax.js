@@ -9,10 +9,12 @@ let api = '';
 // process.env.NODE_ENV !== 'development' ? baseURL = process.env.BASE_API : api = '/api';
 
 export function fetch(opt) {
+    console.log(opt);
+
     let ContentType = 'application/json;charset=UTF-8';
-    if (opt.ContentType==='form') {
+    if (opt.ContentType === 'form') {
         ContentType = 'application/x-www-form-urlencoded';
-    } else if (opt.ContentType==='form-data'){
+    } else if (opt.ContentType === 'form-data') {
         ContentType = 'multipart/form-data';
     }
     var dataList = {
@@ -26,7 +28,7 @@ export function fetch(opt) {
         }
     }
     if (['post', 'put'].includes(opt.method)) {
-        opt.ContentType==='form' ? dataList.data = qs.stringify(opt.data) : dataList.data = opt.data;
+        opt.ContentType === 'form' ? dataList.data = qs.stringify(opt.data) : dataList.data = opt.data;
     } else {
         dataList.params = opt.data;
     }
@@ -53,7 +55,10 @@ axios.interceptors.request.use(config => {
 // 返回响应请求后处理数据
 axios.interceptors.response.use(res => {
     NProgress.done()
-    return res;
+    // let results
+    // res.data.status > 0 ? results = res : results = Promise.reject(res)
+    // return results;
+    return res
 }, error => {
     NProgress.done()
     let errorCode = error.response.status;
@@ -66,12 +71,25 @@ axios.interceptors.response.use(res => {
     }
     return Promise.reject(error.response)
 });
+
+function set_method(m = get) {
+    return m
+}
+
 export default {
     //
-    test_list(data) {
+    test_list(data, method) {
         return fetch({
-            method: 'get',
-            url: `/api/json`,
+            method: 'post',
+            url: `/api/users/login`,
+            data
+        })
+    },
+    test_list2(data, method) {
+        return fetch({
+            ContentType: 'form',
+            method: set_method(method),
+            url: `/api/json2`,
             data
         })
     },

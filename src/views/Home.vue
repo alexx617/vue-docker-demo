@@ -8,8 +8,8 @@
 				<el-input v-model="form.password" type="password"></el-input>
 			</el-form-item>
 			<el-form-item>
-				<el-button type="primary" @click="onSubmit">立即创建</el-button>
-				<el-button>取消</el-button>
+				<el-button type="primary" @click="login">立即创建</el-button>
+				<el-button>登陆</el-button>
 			</el-form-item>
 		</el-form>
 	</div>
@@ -24,26 +24,36 @@ export default {
 			form: {
 				name: '',
 				password: ''
-			}
+			},
+			a: '',
+			b: ''
 		}
 	},
 	methods: {
 		onSubmit() {
 			console.log('submit!');
 		},
-		init(){
-			ajax.test_list()
-				.then(rs=>{
-					log(rs)
-				})
-				.catch(err=>{
-					log(err)
-				})
+		login() {
+			ajax.test_list(this.form)
+				.then(rs => { this.$tip(rs) })
+				.catch(err => this.$err(err.msg));
+
+
+
+
+			// let promise1 = ajax.test_list(this.form).catch(err => this.$err(err.msg));
+			// let promise2 = ajax.test_list2(this.form).catch(err => this.$err(err.msg));
+			// Promise.all([promise2, promise1]).then(res => {
+			// 	console.log(this);
+			// 	// let [a,b] = res);
+			// 	// this.a = a;
+			// 	// this.b = b;
+			// })
 		}
 	},
-	created () {
-		this.init();
+	created() {
+		// this.init();
 	},
-	
+
 }
 </script>
