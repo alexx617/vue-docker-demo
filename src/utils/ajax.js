@@ -29,15 +29,17 @@ export function fetch(opt) {
     } else {
         dataList.params = opt.data;
     }
+    console.log(dataList);
     return new Promise((resolve, reject) => {
         axios(dataList)
             .then(res => {
                 let body = res.data
-                if (body.code == 200 || body.code == 201) {
-                    reslove(body)
-                } else {
-                    reject(body)
-                }
+                resolve(res.data)            
+                // if (body.code == 200 || body.code == 201) {
+                //     reslove(body)
+                // } else {
+                //     reject(body)
+                // }
             })
             .catch(error => {
                 reject(error.data)
@@ -80,7 +82,8 @@ export default {
     test_list(data, method) {
         return fetch({
             method: 'post',
-            url: `/api/users/login`,
+            url: `/api/users/`,
+            // ContentType:'form',
             data
         })
     },
