@@ -35,7 +35,7 @@ export default {
 		},
 		login() {
 			ajax.test_list(this.form)
-				.then(rs => { this.$tip(rs) })
+				.then(rs => { this.$tip(log(rs)) })
 				.catch(err => this.$err(err.msg));
 
 

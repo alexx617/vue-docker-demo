@@ -16,6 +16,7 @@ export function fetch(opt) {
         ContentType = 'multipart/form-data';
     }
     var dataList = {
+        method: opt.method,
         url: `${api}${opt.url}`,
         timeout: 5000,
         baseURL: baseURL,
@@ -29,17 +30,16 @@ export function fetch(opt) {
     } else {
         dataList.params = opt.data;
     }
-    console.log(dataList);
     return new Promise((resolve, reject) => {
         axios(dataList)
             .then(res => {
                 let body = res.data
-                resolve(res.data)            
-                // if (body.code == 200 || body.code == 201) {
-                //     reslove(body)
-                // } else {
-                //     reject(body)
-                // }
+                if (body.code == 200 || body.code == 201) {
+                    reslove(body)
+                } else {
+                    body.data.msg = body.data.content
+                    reject(body.data)
+                }
             })
             .catch(error => {
                 reject(error.data)
@@ -73,25 +73,12 @@ axios.interceptors.response.use(res => {
     return Promise.reject(error.response)
 });
 
-function set_method(m = get) {
-    return m
-}
-
 export default {
     //
-    test_list(data, method) {
+    test_list(data) {
         return fetch({
             method: 'post',
-            url: `/api/users/`,
-            // ContentType:'form',
-            data
-        })
-    },
-    test_list2(data, method) {
-        return fetch({
-            ContentType: 'form',
-            method: set_method(method),
-            url: `/api/json2`,
+            url: `/api/users/login`,
             data
         })
     },
