@@ -9,8 +9,6 @@ let api = '';
 // process.env.NODE_ENV !== 'development' ? baseURL = process.env.BASE_API : api = '/api';
 
 export function fetch(opt) {
-    console.log(opt);
-
     let ContentType = 'application/json;charset=UTF-8';
     if (opt.ContentType === 'form') {
         ContentType = 'application/x-www-form-urlencoded';
@@ -18,7 +16,6 @@ export function fetch(opt) {
         ContentType = 'multipart/form-data';
     }
     var dataList = {
-        method: opt.method,
         url: `${api}${opt.url}`,
         timeout: 5000,
         baseURL: baseURL,
@@ -60,9 +57,6 @@ axios.interceptors.request.use(config => {
 // 返回响应请求后处理数据
 axios.interceptors.response.use(res => {
     NProgress.done()
-    // let results
-    // res.data.status > 0 ? results = res : results = Promise.reject(res)
-    // return results;
     return res
 }, error => {
     NProgress.done()
