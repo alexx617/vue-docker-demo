@@ -35,7 +35,12 @@ export function fetch(opt) {
     return new Promise((resolve, reject) => {
         axios(dataList)
             .then(res => {
-                resolve(res.data)
+                let body = res.data
+                if (body.code == 200 || body.code == 201) {
+                    reslove(body)
+                } else {
+                    reject(body)
+                }
             })
             .catch(error => {
                 reject(error.data)
