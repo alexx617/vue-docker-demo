@@ -5,6 +5,8 @@ import About from './views/About.vue'
 import Alert from './views/Alert.vue'
 import busA from './views/bus/busA.vue'
 import busB from './views/bus/busB.vue'
+import scroll from './views/scroll/scroll'
+import scrollFather from './views/scroll/scrollFather'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/busB',
       name: 'busB',
       component: busB
+    },
+    {
+      path: '/scroll',
+      name: 'scroll',
+      component: scroll
+    },
+    {
+      path: '/scrollFather',
+      name: 'scrollFather',
+      component: scrollFather
     },
   ]
 })

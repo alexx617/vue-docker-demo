@@ -34,12 +34,12 @@ export function fetch(opt) {
         axios(dataList)
             .then(res => {
                 let body = res.data
-                if (body.code == 200 || body.code == 201) {
-                    reslove(body)
-                } else {
-                    body.data.msg = body.data.content
-                    reject(body.data)
-                }
+                // if (body.code == 200 || body.code == 201) {
+                    resolve(body)
+                // } else {
+                //     body.data.msg = body.data.content
+                //     reject(body.data)
+                // }
             })
             .catch(error => {
                 reject(error.data)
@@ -79,6 +79,13 @@ export default {
         return fetch({
             method: 'post',
             url: `/api/users/login`,
+            data
+        })
+    },
+    citiesInfo(data) {
+        return fetch({
+            method: 'get',
+            url: `https://www.easy-mock.com/mock/5b574c739a5ff5320380791b/tuniu/citiesInfo`,
             data
         })
     },
