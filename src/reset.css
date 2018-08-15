@@ -5,7 +5,7 @@ body,
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     color: #333;
     background: #F4F6F9;
-    line-height: 1;
+    line-height: 1.5;
     font-family: "微软雅黑", "Microsoft YaHei", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Arial, sans-serif, Arial, sans-serif;
     overflow-x: hidden;
     -ms-text-size-adjust: none;
@@ -13,10 +13,6 @@ body,
     font-size: 14px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-}
-
-html{
-    font-size: 10vw;
 }
 
 html,
@@ -81,7 +77,8 @@ progress {
 a {
     text-decoration: none;
     -webkit-touch-callout: none;
-    background-color: transparent
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 li {

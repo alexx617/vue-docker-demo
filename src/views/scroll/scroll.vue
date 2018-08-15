@@ -1,7 +1,8 @@
 <template>
     <div class="scroll-list">
         <ul>
-            <li v-for="(item,i) in lotter" :key="i" :ref="item" @click="showref">{{item}}</li>
+            <li @click="handleLetterClick">#</li>
+            <li v-for="(item,i) in lotter" :key="i" :ref="item" @click="handleLetterClick">{{item}}</li>
         </ul>
     </div>
 </template>
@@ -27,10 +28,9 @@ export default {
     created() {
     },
     methods: {
-        showref(){
-            console.log(this.$refs);
-            
-        }
+        handleLetterClick(e) {
+            this.$emit('change', e.target.innerText)
+        },
     },
 }
 

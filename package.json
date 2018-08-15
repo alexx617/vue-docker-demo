@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axtools": "0.0.1",
+    "better-scroll": "^1.12.6",
     "element-ui": "^2.4.4",
     "lodash": "^4.17.10",
     "nprogress": "^0.2.0",
